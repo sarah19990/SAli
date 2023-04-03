@@ -17,7 +17,7 @@ def register(request):
         else:
             messages.warning(request, 'Invalid input')
         
-        return redirect('itreporting-home')
+        return redirect('electronic_products-home')
     else:
         form = UserRegisterForm()
         return render(request, 'users/register.html', {'form':form})
