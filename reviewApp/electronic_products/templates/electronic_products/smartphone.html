@@ -1,0 +1,20 @@
+{% extends "electronic_products/base.html" %}
+{% block content %}
+<h1> SmartPhones {{ product.name }}</h1>
+
+  {% for product in smartphones %}
+    {% if product.category == 'mobile phones' %}
+      <article class="media content-section">
+        <img class="rounded-circle article-img" src="{{product.image.url}}"/>
+        <div class="media-body">
+          <div class="article-metadata">
+            <h3><a class="article-title" href="{% url 'product-detail' product.id %}">Product Name:{{product.name}} Brand: {{product.brand}}</a></h3>
+          </div>
+        </div>
+      </article>
+    {% endif %}
+  {% empty %}
+    <p>No reviews found for this Product.</p>
+  {% endfor %}
+  
+{% endblock %}
