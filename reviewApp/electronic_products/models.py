@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.utils import timezone
+from django.urls import reverse
 # Create your models here.
 class Product(models.Model):
     name = models.CharField(max_length=50, null=True)
@@ -13,11 +14,19 @@ class Product(models.Model):
     image = models.ImageField(upload_to='images', null=True, blank=True)
 
     def __str__(self):
-        return f' The Product is a {self.name} '
+        return  self.name
+    def get_absolute_url(self):
+         return reverse('product-detail', kwargs={'pk': self.pk})
     
-class Reviews(models.Model):
+class Review(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    prodcut_rating = models.IntegerField(null=False, validators=[MinValueValidator(1), MaxValueValidator(5)])
+    product_rating = models.IntegerField(null=False, validators=[MinValueValidator(1), MaxValueValidator(5)])
     text = models.TextField(max_length=100)
     date_reviewed = models.DateTimeField(default=timezone.now)
+    
+    def __str__(self):
+        return  self.author.username
+   
+    def get_absolute_url(self):
+         return reverse('review-detail', kwargs={'pk': self.pk})
