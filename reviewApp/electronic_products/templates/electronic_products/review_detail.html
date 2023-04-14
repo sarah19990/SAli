@@ -8,7 +8,7 @@
          <p> <a class="mr-2" href=""> </p>
       </div>
       <h2><a class="article-title">{{object.author}} </h2>
-      <p class="article-content">{{object.product_rating}}{{object.product}}{{object.text}}{{object.date_reviewed}}</p>
+      <p class="article-content">{{object.product_rating}}<br>{{object.product}}<br>{{object.text}}<br>{{object.date_reviewed}}</p>
   
       {% if object.author == user %}
       <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'review-update' object.id %}"> Update </a>
