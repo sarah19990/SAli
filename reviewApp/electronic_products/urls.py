@@ -1,6 +1,8 @@
 from django.urls import path
 from . import views
 from .views import PostListView, PostDetailView, PostCreateView, PostUpdateView, PostDeleteView, PostListView2, PostDetailView2
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns =[
     path('', views.home, name='electronic_products-home'),
@@ -18,4 +20,4 @@ urlpatterns =[
     path('smartwatch/', views.smartwatch, name='electronic_products-smartwatch'),
     path('smartphone/', views.smartphone, name='electronic_products-smartphone'),
     path('tablet/', views.tablet, name='electronic_products-tablet'),
-] 
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

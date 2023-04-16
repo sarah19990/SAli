@@ -1,19 +1,28 @@
 {% extends "electronic_products/base.html" %}
 {% block content %}
-<article class="media content-section">
-  <p><img class="rounded-circle account-img" 
-    src="{{user.profile.image.url}}"></p>
-    <div class="media-body">
-      <div class="article-metadata">
-         <p> <a class="mr-2" href=""> </p>
-      </div>
-      <h2><a class="article-title">{{object.author}} </h2>
-      <p class="article-content">{{object.product_rating}}<br>{{object.product}}<br>{{object.text}}<br>{{object.date_reviewed}}</p>
-  
-      {% if object.author == user %}
-      <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'review-update' object.id %}"> Update </a>
-      <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'review-delete' object.id %}"> Delete </a>
-    {% endif %}
-    </div>
-  </article>
+{% load static %}
+<div>
+
+<article class="media content-section" style="background-color: rgb(85, 13, 1);">
+<img class="rounded-circle article-img" src="{% static 'images/default1.jpg' %}">
+<div class="media-body">
+<div class="article-metadata">
+<h1 style="color: white; font-size: 15px;">Posted on {{object.date_reviewed}}</h1>
+</div>
+<div class="media-body"></div>
+<h3 style="color: white;">{{object.name}} Rating: {{object.product_rating}}/5 star</h3>
+</div>
+<div class="media-body"></div>
+<h1 style="color: white; font-size: 15px;">Review: {{object.text}} </h2>
+</div>
+{% if object.author == user %}
+
+<a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'review-update' object.id %}">Update</a>
+    <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'review-delete' object.id %}">Delete</a>
+</article> 
+{% endif %}
 {% endblock %}
+
+
+       
+     

@@ -1,30 +1,40 @@
 {% extends "electronic_products/base.html" %}
 {% block content %}
-<h3> {{'Product'}}</h3>
-    <h2 class="article-title">Product Name:{{object.name}} Brand: {{object.brand}}</h2>
-    <h2 class="article-title">Average cost: £{{object.price}}</h2>
-    <h2 class="article-title">Category: {{object.category}}</h2>
-    <h2 class="article-title">Date it was released: {{object.release_of_date}}</h2>
-    <h2 class="article-title">Description: {{object.description}}</h2>
-    <img class="rounded-circle article-img" src="{{object.image.url}}"/>
-      
-    {% if object.name == user %}
-        <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'product-update' object.id %}">Update</a>
-        <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'product-delete' object.id %}">Delete</a>
-    {% endif %}
+{% load crispy_forms_tags %}
+{% load static %}
 
-
-    <a class="nav-item nav-link" href="{% url 'review-create' %}?product={{ object.id }}">Add new review</a>
-    {% for review in Reviews %}
-    <article class="media content-section">
-      <img class="rounded-circle article-img" src="{{review.author.profile.image.url}}"/>
-      <div class="media-body">
-        <div class="article-metadata">
-          <h3><a class="article-title" href="{% url 'review-detail' review.id %}">Posted by {{review.name}} Review rating: {{review.product_rating}}</a></h3>
-
+<article class="media content-section" style="background-color:rgb(85, 13, 1);">
+  <img class="rounded-circle article-img" src="{{object.image.url}}"/>
+  <div class="media-body">
+    <div class="article-metadata">
+      <h1 style="color: white; font-size: 15px;">{{object.category}}</h1>
     </div>
+    <div class="article-metadata">
+      <h3><a style="color: white;" class="article-title" href="{% url 'product-detail' product.id %}">{{product.name}} Brand: {{object.brand}}</a></h3>
     </div>
-  </article>
+    <div class="article-metadata">
+    <h1 style="color: white; font-size: 15px;">{{object.description}}</h1>
+    <h1 style="color: white; font-size: 15px;">Cost: £{{object.price}}</h1>
+    <h1 style="color: white; font-size: 15px;">Released: {{object.release_of_date}}</h1>
+
+  </div>
+</div>
+</article>
+
+   
+
+
+    <a style="font-size: 20px;" class="btn btn-outline-primary mb-4" href="{% url 'review-create' %}?product={{ object.id }}" href="{% url 'review-create' %}?image={{user.profile.image.url}}">Add new review</a>
+{% for review in Reviews %}
+<article class="media content-section">
+  <img class="rounded-circle article-img" src="{% static 'images/default1.jpg' %}"/>
+  <div class="media-body">
+    <div class="article-metadata">
+      <h3><a style="font-size: 15px;" class="article-title" href="{% url 'review-detail' review.id %}?image={{user.profile.image.url}}">Posted by {{review.author}} on {{review.date_reviewed}}</a></h3>
+    </div>
+    <div class="article-metadata">
+      <h3 style="font-size: 15px;">Review rating: {{review.product_rating}}</h3>
+
   
   {% empty %}
   <p>No reviews found for this product.</p>
@@ -32,3 +42,4 @@
 
 </div>
 {% endblock content%}
+
