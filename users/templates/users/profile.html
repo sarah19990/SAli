@@ -1,32 +1,32 @@
 {% extends "electronic_products/base.html" %}
 {% load crispy_forms_tags %}
-
 {% block content %}
-<div class="content-section">
-    <div class="media">
+<br><br><br>
+<div class="content-section" style="color: white;">
+    <div class="media" style="color: white;">
     <p><img class="rounded-circle account-img" 
-   src="{{user.profile.image.url}}"></p>
-    
-    <div class="media-body">
-    <h2 class="account-heading">{{user.profile}}</h2>
-    <p class="text-secondary">{{user.username}}</p>
-    <p class="text-secondary">{{user.email}}</p>
-    <p class="text-secondary">{{user.profile.country}}</p>
-    <p class="text-secondary">{{user.profile.city}}</p>
-    <p class="text-secondary">{{user.profile.date_of_birth}}</p>
-    <p class="text-secondary">{{user.first_name}}</p>
-    <p class="text-secondary">{{user.last_name}}</p>
+   src="{{user.profile.image.url}}" width="200" height="200"></p>
+    <br><br><br>
+    <div class="media-body" style="color: white;">
+    <h2 class="account-heading" style="color: white;">{{user.profile}}</h2>
+    <p  style="color: white;">{{user.username}}</p>
+    <p  style="color: white;">{{user.email}}</p>
+    <p  style="color: white;">{{user.profile.country}}</p>
+    <p  style="color: white;">{{user.profile.city}}</p>
+    <p  style="color: white;">{{user.profile.date_of_birth}}</p>
+    <p  style="color: white;">{{user.first_name}}</p>
+    <p  style="color: white;">{{user.last_name}}</p>
     </div>
     </div>
-    <form method="POST" enctype="multipart/form-data">
+    <form method="POST" enctype="multipart/form-data" style="color: white;">
         {% csrf_token %}
-            <fieldset class="form-group">
-                <legend class="border-bottom mb-4"> User Profile Details </legend>
+            <fieldset class="form-group" style="color: white;">
+                <legend class="border-bottom mb-4" style="color: white;"> User Profile Details </legend>
                 {{ u_form|crispy }}
                 {{ p_form|crispy }}
             </fieldset>
             <div class="form-group">
-                <button class="btn btn-outline-info" type="submit">Update </button>
+                <button class="btn btn-outline-info" style="color: white;" type="submit">Update </button>
             </div>
         </form>
    </div>

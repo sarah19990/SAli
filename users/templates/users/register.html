@@ -1,20 +1,21 @@
 {% extends "electronic_products/base.html" %}
 {% load crispy_forms_tags %}
-
-{% block content %}<div class="content-section">
+{% block content %}
+<br><br><br><br>
+<div class="content-section" style="color: white;">
     <form method="POST">
     {% csrf_token %}
-        <fieldset class="form-group">
-            <legend class="border-bottom mb-4">User Registration Form</legend>
+        <fieldset class="form-group" style="color: white;">
+            <legend class="border-bottom mb-4" style="color: white;">User Registration Form</legend>
             {{ form|crispy}}
         </fieldset>
         <div class="form-group">
-            <button class="btn btn-outline-info" type="submit">Register </button>
+            <button class="btn btn-outline-info" type="submit" style="color: white;">Register </button>
         </div>
     </form>
     <div class="border-top pt-3">
-        <small class="text-muted">
-        Are You Already Registered?<a class="ml-2" href="#">
+        <p style="color: white; font-size: small;">
+        Are You Already Registered?<a class="ml-2" href="{% url 'login' %}">
         Login </a>
         </small>
     </div>
